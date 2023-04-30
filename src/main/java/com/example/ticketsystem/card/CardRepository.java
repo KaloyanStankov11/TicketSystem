@@ -1,8 +1,8 @@
-package com.example.ticketsystem.user;
+package com.example.ticketsystem.card;
 
 import com.example.ticketsystem.Common.DefaultRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserRepository extends DefaultRepository {
+public class CardRepository extends DefaultRepository {
 }
