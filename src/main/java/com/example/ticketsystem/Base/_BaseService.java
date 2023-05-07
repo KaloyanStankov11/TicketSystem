@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class _BaseService {
     @PersistenceContext
-    EntityManager em;
+    public EntityManager em;
 }

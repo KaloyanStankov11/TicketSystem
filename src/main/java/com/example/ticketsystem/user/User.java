@@ -10,7 +10,7 @@ public class User extends _BaseEntity {
     private String username;
     private String email;
     private String password;
-    private UserType userType;
+    private String userType;
     private String discountCard;
 
 }

@@ -10,4 +10,5 @@ public class Ticket extends _BaseEntity {
     private Long userId;
     private Long routeId;
     private BigDecimal price;
+    private Boolean isChildren;
 }
