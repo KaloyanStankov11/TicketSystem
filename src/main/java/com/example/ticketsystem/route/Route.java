@@ -12,6 +12,15 @@ public class Route extends _BaseEntity {
     private String endCity;
     private LocalDateTime departTime;
     private BigDecimal ticketPrice;
+    private String direction;
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
 
     public String getStartCity() {
         return startCity;
