@@ -124,7 +124,6 @@ class TicketPriceCalculationTest {
         Assertions.assertEquals(expextedPrice, actualPrice);
     }
 
-    //time boundaries tests
     @Test
     @Order(9)
     void timeBoundariesTests(){
