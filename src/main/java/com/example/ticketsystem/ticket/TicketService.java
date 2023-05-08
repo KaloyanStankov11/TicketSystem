@@ -30,6 +30,9 @@ public class TicketService extends _BaseService {
     }
 
     private BigDecimal getPriceByCard(String discountCardType, Boolean isChildren, BigDecimal calculatedPrice) {
+        if(discountCardType == null){
+            return calculatedPrice;
+        }
         if(discountCardType.equals(CardType.FAMILY.name())){
             if(isChildren){
                 calculatedPrice = calculatedPrice.subtract(calculatedPrice.multiply(BigDecimal.valueOf(childrenFamilyPercent)));
