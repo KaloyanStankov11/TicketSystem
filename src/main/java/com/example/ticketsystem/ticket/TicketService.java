@@ -8,6 +8,7 @@ import com.example.ticketsystem.user.User;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalTime;
 
 @Service
@@ -26,10 +27,10 @@ public class TicketService extends _BaseService {
 
         calculatedPrice = getPriceByCard(discountCardType, isChildren, calculatedPrice);
 
-        return calculatedPrice;
+        return calculatedPrice.setScale(2, RoundingMode.HALF_UP);
     }
 
-    private BigDecimal getPriceByCard(String discountCardType, boolean isChildren, BigDecimal calculatedPrice) {
+    public BigDecimal getPriceByCard(String discountCardType, boolean isChildren, BigDecimal calculatedPrice) {
         if (discountCardType == null) {
             return calculatedPrice;
         }
@@ -42,15 +43,15 @@ public class TicketService extends _BaseService {
         } else if (discountCardType.equals(CardType.RETIRED.name())) {
             calculatedPrice = calculatedPrice.subtract(calculatedPrice.multiply(BigDecimal.valueOf(RETIRED_PERCENT)));
         }
-        return calculatedPrice;
+        return calculatedPrice.setScale(2, RoundingMode.HALF_UP);
     }
 
-    private BigDecimal getPriceByTime(BigDecimal currentPrice, LocalTime departTime) {
+    public BigDecimal getPriceByTime(BigDecimal currentPrice, LocalTime departTime) {
         if ((departTime.isAfter(LocalTime.parse("09:30:00")) && departTime.isBefore(LocalTime.parse("16:00:00")))
-                || (departTime.isAfter(LocalTime.parse("19:30:00")) && departTime.isBefore(LocalTime.parse("07:30:00")))) {
+                || departTime.isAfter(LocalTime.parse("19:30:00")) || departTime.isBefore(LocalTime.parse("07:30:00"))) {
             currentPrice = currentPrice.subtract(currentPrice.multiply(BigDecimal.valueOf(DEFAULT_PERCENT)));
         }
-        return currentPrice;
+        return currentPrice.setScale(2, RoundingMode.HALF_UP);
     }
 
 
