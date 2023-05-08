@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @ExtendWith(MockitoExtension.class)
 class TicketPriceCalculationTest {
@@ -121,5 +122,26 @@ class TicketPriceCalculationTest {
         BigDecimal expextedPrice = BigDecimal.valueOf(42.75);
         BigDecimal actualPrice = ticketService.calculateTicketPrice(route, discountCardType, isChildren).setScale(2, RoundingMode.HALF_UP);
         Assertions.assertEquals(expextedPrice, actualPrice);
+    }
+
+    //time boundaries tests
+    @Test
+    @Order(9)
+    void timeBoundariesTests(){
+        BigDecimal ticketPrice = BigDecimal.valueOf(50);
+        LocalTime[] peakHourTimes = {
+                LocalTime.parse("07:30:01"), LocalTime.parse("09:29:59"),
+                LocalTime.parse("16:00:01"), LocalTime.parse("19:29:59")
+        };
+        LocalTime[] nonPeakHourTimes = {
+                LocalTime.parse("07:29:59"), LocalTime.parse("09:30:01"),
+                LocalTime.parse("15:59:59"), LocalTime.parse("19:30:01")
+        };
+        for(LocalTime time : peakHourTimes){
+            Assertions.assertEquals(BigDecimal.valueOf(50.00).setScale(2), ticketService.getPriceByTime(ticketPrice, time));
+        }
+        for(LocalTime time : nonPeakHourTimes){
+            Assertions.assertEquals(BigDecimal.valueOf(47.50).setScale(2), ticketService.getPriceByTime(ticketPrice, time));
+        }
     }
 }
