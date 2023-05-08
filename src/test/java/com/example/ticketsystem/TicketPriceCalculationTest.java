@@ -15,13 +15,13 @@ import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 @ExtendWith(MockitoExtension.class)
-public class TicketPriceCalculationTest {
+class TicketPriceCalculationTest {
     @InjectMocks
     private TicketService ticketService;
 
     @Test
     @Order(1)
-    public void testPeakHourFamilyCardChildren(){
+    void testPeakHourFamilyCardChildren(){
         Route route = new Route();
         route.setTicketPrice(BigDecimal.valueOf(50));
         route.setDepartTime(LocalDateTime.parse("2023-05-10T17:00:00"));
@@ -34,7 +34,7 @@ public class TicketPriceCalculationTest {
 
     @Test
     @Order(2)
-    public void testPeakHourFamilyCardNotChildren(){
+    void testPeakHourFamilyCardNotChildren(){
         Route route = new Route();
         route.setTicketPrice(BigDecimal.valueOf(50));
         route.setDepartTime(LocalDateTime.parse("2023-05-10T17:00:00"));
@@ -47,7 +47,7 @@ public class TicketPriceCalculationTest {
 
     @Test
     @Order(3)
-    public void testNotPeakHourRetiredCard(){
+    void testNotPeakHourRetiredCard(){
         Route route = new Route();
         route.setTicketPrice(BigDecimal.valueOf(50));
         route.setDepartTime(LocalDateTime.parse("2023-05-10T11:00:00"));
@@ -60,7 +60,7 @@ public class TicketPriceCalculationTest {
 
     @Test
     @Order(4)
-    public void testNotPeakHourNoCard(){
+    void testNotPeakHourNoCard(){
         Route route = new Route();
         route.setTicketPrice(BigDecimal.valueOf(50));
         route.setDepartTime(LocalDateTime.parse("2023-05-10T11:00:00"));
@@ -73,7 +73,7 @@ public class TicketPriceCalculationTest {
 
     @Test
     @Order(5)
-    public void testPeakHourNoCard(){
+    void testPeakHourNoCard(){
         Route route = new Route();
         route.setTicketPrice(BigDecimal.valueOf(50));
         route.setDepartTime(LocalDateTime.parse("2023-05-10T17:00:00"));
@@ -86,7 +86,7 @@ public class TicketPriceCalculationTest {
 
     @Test
     @Order(6)
-    public void testPeakHourRetiredCard(){
+    void testPeakHourRetiredCard(){
         Route route = new Route();
         route.setTicketPrice(BigDecimal.valueOf(50));
         route.setDepartTime(LocalDateTime.parse("2023-05-10T18:00:00"));
@@ -99,7 +99,7 @@ public class TicketPriceCalculationTest {
 
     @Test
     @Order(7)
-    public void testNotPeakHourFamilyCardChildren(){
+    void testNotPeakHourFamilyCardChildren(){
         Route route = new Route();
         route.setTicketPrice(BigDecimal.valueOf(50));
         route.setDepartTime(LocalDateTime.parse("2023-05-10T14:00:00"));
@@ -112,7 +112,7 @@ public class TicketPriceCalculationTest {
 
     @Test
     @Order(8)
-    public void testNotPeakHourFamilyCardNotChildren(){
+    void testNotPeakHourFamilyCardNotChildren(){
         Route route = new Route();
         route.setTicketPrice(BigDecimal.valueOf(50));
         route.setDepartTime(LocalDateTime.parse("2023-05-10T14:00:00"));
